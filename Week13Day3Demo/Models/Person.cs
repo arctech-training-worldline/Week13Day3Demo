@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -7,29 +8,37 @@ using System.Threading.Tasks;
 
 namespace Week13Day3Demo.Models
 {
-    public class Person
+    public class Person : INotifyPropertyChanged
     {
-        private const string Path = @"C:\wgs\PersonData.txt";
-
+        public int Id { get; set; }
         public string Name { get; set; }
-        public int Age { get; set; }
-        public string Comment { get; set; }
 
-        internal void LoadFromFile()
-        {
-            var personData = File.ReadAllText(Path);
+        private int _age;
 
-            var fields = personData.Split(", ");
+        public event PropertyChangedEventHandler PropertyChanged;
 
-            Name = fields[0].Split(':')[1];
-            Age = int.Parse(fields[1].Split(':')[1]);
-            Comment = fields[2].Split(':')[1];
+        public int Age 
+        { 
+            get
+            {
+                return _age;
+            }
+
+            set
+            {
+                _age = value;
+
+                if(PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs(nameof(IsValidAge)));
+
+                // Inform WPF, please update bindings of IsValidAge property
+                // 1. Implement interface INotifyPropertyChanged in the data class 
+                // 2. Raise the PropertyChanged event with the 2nd parameter indicating the property name to notify
+            }
         }
 
-        internal void SaveToFile()
-        {
-            var personData = $"Name:{Name}, Age: {Age}, Comment: {Comment}";
-            File.WriteAllText(Path, personData);
-        }   
+        public string Comment { get; set; }
+
+        public bool IsValidAge => Age >= 18;
     }
 }

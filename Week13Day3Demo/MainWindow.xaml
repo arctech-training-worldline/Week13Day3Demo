@@ -20,13 +20,15 @@
         </Grid.ColumnDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0" Content="Name:"/>
-        <Label Grid.Row="1" Grid.Column="0" Content="E-Mail:"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Age:"/>
         <Label Grid.Row="2" Grid.Column="0" Content="Comment:"/>
 
         <TextBox x:Name="TextBoxName" Grid.Row="0" Grid.Column="1" Margin="3" Height="30" Text="{Binding Name}" />
         <TextBox x:Name="TextBoxAge" Grid.Row="1" Grid.Column="1" Margin="3" Height="30" Text="{Binding Age}" />
         <TextBox x:Name="TextBoxComment" Grid.Row="2" Grid.Column="1" Margin="3" Text="{Binding Comment}" />
 
-        <Button x:Name="ButtonSave" Grid.Row="3" Margin="3" Height="30" Grid.ColumnSpan="2" Click="ButtonSave_Click">Save Data To File</Button>
+        <Button x:Name="ButtonSave" Grid.Row="3" Margin="3" Height="30" Grid.ColumnSpan="2" 
+                IsEnabled="{Binding IsValidAge}"
+                Click="ButtonSave_Click">Save Data To File</Button>
     </Grid>
 </Window>

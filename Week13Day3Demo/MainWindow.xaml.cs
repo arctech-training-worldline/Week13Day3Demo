@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Week13Day3Demo.Models;
+using Week13Day3Demo.Services;
 
 namespace Week13Day3Demo
 {
@@ -30,9 +31,7 @@ namespace Week13Day3Demo
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _person = new Person();
-            _person.LoadFromFile();
-
+            _person = PersonsFileService.LoadFromFile();
             DataContext = _person;
 
             //TextBoxName.Text = _person.Name;
@@ -46,8 +45,7 @@ namespace Week13Day3Demo
             //_person.Age = int.Parse(TextBoxAge.Text);
             //_person.Comment = TextBoxComment.Text;
 
-            _person.SaveToFile();
-
+            PersonsFileService.SaveToFile(_person);
             MessageBox.Show("Data has been saved successfully!", "File Save", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
