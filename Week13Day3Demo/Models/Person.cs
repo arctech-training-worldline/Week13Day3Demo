@@ -28,8 +28,7 @@ namespace Week13Day3Demo.Models
             {
                 _age = value;
 
-                if(PropertyChanged != null)
-                    PropertyChanged(this, new PropertyChangedEventArgs(nameof(IsValidAge)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsValidAge)));
 
                 // Inform WPF, please update bindings of IsValidAge property
                 // 1. Implement interface INotifyPropertyChanged in the data class 

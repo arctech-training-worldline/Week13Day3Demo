@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Employee Management" Height="522" Width="1221" Loaded="Window_Loaded">
     <DockPanel>
-        <Image DockPanel.Dock="Left" Source="/Resources/employee-banner-1.png"></Image>
+        <Image x:Name="ImageBanner" DockPanel.Dock="Left" Source="{Binding ImageSource, Mode=OneWay}"></Image>
         <TextBlock DockPanel.Dock="Top" Background="CadetBlue" Foreground="White" FontSize="22">
             <Run Text="{Binding RecordMode}" />
             <Run Text="Person Details" />

@@ -24,17 +24,20 @@ namespace Week13Day3Demo
     public partial class WindowEmployeeManagement : Window
     {
         PersonsDbService _personsDbService;
+        ImageCarouselService _imageCarouselService;
 
         public WindowEmployeeManagement()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         public void Start()
         {
             _personsDbService = new PersonsDbService();
-            
+            _imageCarouselService = new ImageCarouselService();
+
             DataContext = _personsDbService;
+            ImageBanner.DataContext = _imageCarouselService;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -81,6 +84,6 @@ namespace Week13Day3Demo
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             _personsDbService.StopEditing();
-        }        
+        }
     }
 }

@@ -29,7 +29,7 @@ namespace Week13Day3Demo.Services
 
         public void Insert()
         {
-            RecordMode = RecordMode.Insert;            
+            RecordMode = RecordMode.Insert;
             Person = new Person();
 
             NotifyPersonRecordChanged();
@@ -84,10 +84,10 @@ namespace Week13Day3Demo.Services
         private void InsertIntoDb()
         {
             var query = "InsertPerson";
-            
+
             using var connection = new SqlConnection(Properties.Settings.Default.ConnectionString);
             using var command = new SqlCommand(query, connection);
-            
+
             command.CommandType = CommandType.StoredProcedure;
 
             connection.Open();
@@ -140,7 +140,7 @@ namespace Week13Day3Demo.Services
             }
             else
                 Person = new Person();
-            
+
             NotifyPersonRecordChanged();
         }
 
@@ -213,6 +213,10 @@ namespace Week13Day3Demo.Services
         }
 
         public bool InputIsEditable => !InputIsReadOnly;
+
+        #endregion
+
+        #region INotifyPropertyChanged Implementation
 
         public event PropertyChangedEventHandler PropertyChanged;
 
